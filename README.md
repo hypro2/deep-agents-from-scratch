@@ -4,7 +4,7 @@
 
 [Deep Research](https://academy.langchain.com/courses/deep-research-with-langgraph)는 코딩과 함께 주요 에이전트 활용 사례 중 하나로 부상했습니다. 이제 우리는 다양한 작업에 사용할 수 있는 범용 에이전트의 등장을 목격하고 있습니다. 예를 들어, [Manus](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus)는 장기적인 작업을 위한 에이전트로 상당한 주목과 인기를 얻었으며, 평균적인 Manus 작업은 약 50개의 도구 호출(tool call)을 사용합니다! 두 번째 예로, Claude Code는 코딩 이외의 작업에도 일반적으로 사용되고 있습니다. 이러한 인기 있는 "딥" 에이전트들 전반에 걸친 [컨텍스트 엔지니어링 패턴](https://docs.google.com/presentation/d/16aaXLu40GugY-kOpqDU4e-S0hD1FmHcNyF0rRRnb1OU/edit?slide=id.p#slide=id.p)을 자세히 살펴보면 몇 가지 공통된 접근 방식을 발견할 수 있습니다:
 
-* **작업 계획 (예: TODO), 종종 암송(recitation)과 함께 사용**
+* **작업 계획 (예: TODO), 종종 recitation과 함께 사용**
 * **파일 시스템으로 컨텍스트 오프로딩**
 * **하위 에이전트(sub-agent) 위임을 통한 컨텍스트 격리**
 

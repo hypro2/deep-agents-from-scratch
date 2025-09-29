@@ -1,7 +1,7 @@
-"""Research Tools.
+"""연구 도구.
 
-This module provides search and content processing utilities for the research agent,
-including web search capabilities and content summarization tools.
+이 모듈은 연구 에이전트를 위한 검색 및 콘텐츠 처리 유틸리티를 제공하며,
+웹 검색 기능과 콘텐츠 요약 도구를 포함합니다.
 """
 import os
 from datetime import datetime
@@ -32,7 +32,7 @@ class Summary(BaseModel):
 
 def get_today_str() -> str:
     """Get current date in a human-readable format."""
-    return datetime.now().strftime("%a %b %-d, %Y")
+    return datetime.now().strftime("%a %b %#d, %Y")
 
 def run_tavily_search(
     search_query: str, 
@@ -219,28 +219,28 @@ Files: {', '.join(saved_files)}
 
 @tool(parse_docstring=True)
 def think_tool(reflection: str) -> str:
-    """Tool for strategic reflection on research progress and decision-making.
+    """연구 진행 상황과 의사결정에 대한 전략적 성찰 도구.
 
-    Use this tool after each search to analyze results and plan next steps systematically.
-    This creates a deliberate pause in the research workflow for quality decision-making.
+    각 검색 후 이 도구를 사용하여 결과를 분석하고 다음 단계를 체계적으로 계획하세요.
+    이는 질적 의사결정을 위한 연구 워크플로우 내 의도적인 일시 정지를 만듭니다.
 
-    When to use:
-    - After receiving search results: What key information did I find?
-    - Before deciding next steps: Do I have enough to answer comprehensively?
-    - When assessing research gaps: What specific information am I still missing?
-    - Before concluding research: Can I provide a complete answer now?
-    - How complex is the question: Have I reached the number of search limits?
+    사용 시점:
+    - 검색 결과 수신 후: 어떤 핵심 정보를 찾았는가?
+    - 다음 단계 결정 전: 포괄적으로 답변하기에 충분한가?
+    - 연구 공백 평가 시: 아직 부족한 구체적인 정보는 무엇인가?
+    - 연구 마무리 전: 지금 완전한 답변을 제공할 수 있는가?
+    - 질문의 복잡성: 검색 횟수 한도에 도달했는가?
 
-    Reflection should address:
-    1. Analysis of current findings - What concrete information have I gathered?
-    2. Gap assessment - What crucial information is still missing?
-    3. Quality evaluation - Do I have sufficient evidence/examples for a good answer?
-    4. Strategic decision - Should I continue searching or provide my answer?
+    반성 시 다루어야 할 사항:
+    1. 현재 발견 사항 분석 - 어떤 구체적인 정보를 수집했는가?
+    2. 공백 평가 - 여전히 부족한 핵심 정보는 무엇인가?
+    3. 질적 평가 - 양질의 답변을 위한 충분한 증거나 사례가 있는가?
+    4. 전략적 결정 - 검색을 계속할 것인가, 답변을 제공할 것인가?
 
     Args:
-        reflection: Your detailed reflection on research progress, findings, gaps, and next steps
+        reflection: 연구 진행 상황, 발견 사항, 공백, 다음 단계에 대한 상세한 반성
 
     Returns:
-        Confirmation that reflection was recorded for decision-making
+        의사결정을 위한 반성 기록 확인
     """
     return f"Reflection recorded: {reflection}"

@@ -1,8 +1,7 @@
-"""Task delegation tools for context isolation through sub-agents.
+"""하위 에이전트를 통한 컨텍스트 격리를 위한 작업 위임 도구.
 
-This module provides the core infrastructure for creating and managing sub-agents
-with isolated contexts. Sub-agents prevent context clash by operating with clean
-context windows containing only their specific task description.
+이 모듈은 격리된 컨텍스트를 가진 하위 에이전트를 생성하고 관리하기 위한 핵심 인프라를 제공합니다. 
+하위 에이전트는 특정 작업 설명만 포함된 깨끗한 컨텍스트 창으로 작동함으로써 컨텍스트 충돌을 방지합니다.
 """
 
 from typing import Annotated, NotRequired
@@ -18,7 +17,7 @@ from deep_agents_from_scratch.state import DeepAgentState
 
 
 class SubAgent(TypedDict):
-    """Configuration for a specialized sub-agent."""
+    """특화된 하위 에이전트용 구성."""
 
     name: str
     description: str
@@ -27,19 +26,19 @@ class SubAgent(TypedDict):
 
 
 def _create_task_tool(tools, subagents: list[SubAgent], model, state_schema):
-    """Create a task delegation tool that enables context isolation through sub-agents.
+    """서브 에이전트를 통해 컨텍스트 격리를 가능하게 하는 작업 위임 도구를 생성합니다.
 
-    This function implements the core pattern for spawning specialized sub-agents with
-    isolated contexts, preventing context clash and confusion in complex multi-step tasks.
+    이 기능은 격리된 컨텍스트를 가진 특수화된 서브 에이전트를 생성하는 핵심 패턴을 구현하여
+    복잡한 다단계 작업에서 컨텍스트 충돌과 혼란을 방지합니다.
 
     Args:
-        tools: List of available tools that can be assigned to sub-agents
-        subagents: List of specialized sub-agent configurations
-        model: The language model to use for all agents
-        state_schema: The state schema (typically DeepAgentState)
+        tools: 서브 에이전트에 할당 가능한 사용 가능한 도구 목록
+        subagents: 특수화된 서브 에이전트 구성 목록
+        model: 모든 에이전트에 사용할 언어 모델
+        state_schema: 상태 스키마 (일반적으로 DeepAgentState)
 
     Returns:
-        A 'task' tool that can delegate work to specialized sub-agents
+        특수화된 서브 에이전트에 작업을 위임할 수 있는 ‘작업’ 도구
     """
     # Create agent registry
     agents = {}
@@ -75,10 +74,10 @@ def _create_task_tool(tools, subagents: list[SubAgent], model, state_schema):
         state: Annotated[DeepAgentState, InjectedState],
         tool_call_id: Annotated[str, InjectedToolCallId],
     ):
-        """Delegate a task to a specialized sub-agent with isolated context.
+        """특정 작업을 독립된 컨텍스트를 가진 전문화된 하위 에이전트에게 위임합니다.
 
-        This creates a fresh context for the sub-agent containing only the task description,
-        preventing context pollution from the parent agent's conversation history.
+        이는 하위 에이전트에 작업 설명만 포함된 새로운 컨텍스트를 생성하여,
+        상위 에이전트의 대화 기록으로 인한 컨텍스트 오염을 방지합니다.
         """
         # Validate requested agent type exists
         if subagent_type not in agents:
